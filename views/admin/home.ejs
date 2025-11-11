@@ -1,0 +1,354 @@
+
+
+<%layout("/layouts/boilerplate")%>
+
+  <style>
+    .fbody {
+      font-family: 'Lucida Sans', Geneva, Verdana, sans-serif !important;
+      min-height: 100vh;
+      background-image: url('/uploads/blf.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      text-align: center;
+      padding-top: 10rem;
+    }
+
+    .h1 {
+      color: black;
+      font-size: 4rem;
+    }
+
+    .h12 {
+      color: rgb(5, 119, 145);
+      font-size: 4rem;
+    }
+
+    .p1 {
+      color: rgb(126, 126, 135);
+      margin-top: 3rem;
+      font-size: 1.1rem;
+    }
+
+    .p2 {
+      color: rgb(126, 126, 135);
+    }
+
+    .btn1 {
+      margin-right: 1rem;
+    }
+
+    .btn2:hover {
+      background-color: rgb(241, 131, 41);
+    }
+
+    .infohome {
+      margin-top: 5rem;
+    }
+
+    .btn1,
+    .btn2 {
+      width: 15rem;
+      margin-top: 2rem;
+      height: 2.5rem;
+    }
+
+    .imgc {
+      width: 8rem;
+      height: 8rem;
+      object-fit: contain;
+      margin: auto;
+      padding: 1rem;
+    }
+
+    @media (max-width: 576px) {
+
+      .h1,
+      .h12 {
+        font-size: 2rem;
+      }
+
+      .p1,
+      .p2 {
+        font-size: 0.9rem;
+      }
+
+      .btn1,
+      .btn2 {
+        width: 80%;
+        margin-bottom: 0.5rem;
+      }
+
+      .btn2 {
+        margin-right: 1rem;
+      }
+    }
+
+    .work {
+      background-color: rgb(255, 255, 255);
+      padding: 3rem 0;
+    }
+
+    .h2w {
+      padding-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .wcont1 {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-top: 20px;
+      padding-left: 10px;
+    }
+
+    .imgw {
+      height: 80px;
+      width: 80px;
+      height: auto;
+    }
+
+    .textw {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding-left: 10px;
+    }
+
+    .rstart {
+      height: 450px;
+      background-color: rgb(242, 244, 245);
+    }
+
+    .rh2 {
+      padding-top: 7.5rem;
+    }
+  </style>
+
+  <div class="fbody">
+    <h1 class="h1 display-5 fw-bold">Lost Something?</h1>
+    <h1 class="h12 display-5 fw-bold">We'll Help You Find It</h1>
+    <p class="p1">The easiest way to reunite lost items with their owners across your campus.</p>
+    <p class="p2">Report, search, and recover in just a few clicks.</p>
+    <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
+      <form action="/report" method="get">
+      <button class="btn btn-info btn1">Report Lost Item</button>
+      </form>
+      <form action="/reportfnd" method="get">
+      <button class="btn btn-light btn2">Report Found Item</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="infohome text-center container">
+    <h1 class="fw-bold mb-5">Why Choose FindIt?</h1>
+    <div class="row g-4 justify-content-center">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 text-center">
+          <img src="https://img.icons8.com/m_outlined/512/40C057/search.png" class="card-img-top imgc"
+            alt="Easy Search">
+          <div class="card-body">
+            <h5 class="card-title">Easy Search</h5>
+            <p class="card-text">Quickly search through reported items with filters for category, location, and date.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 text-center">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrhGa3Y-BKiQMRM6eDEEdNK_BayoJbDa-8CA&s"
+            class="card-img-top imgc" alt="Real-time Updates">
+          <div class="card-body">
+            <h5 class="card-title">Real-time Updates</h5>
+            <p class="card-text">Get notified instantly when there's a match for your lost or found items.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 text-center">
+          <img
+            src="https://thumbs.dreamstime.com/b/tick-shield-security-vector-icon-isolated-white-background-81602393.jpg"
+            class="card-img-top imgc" alt="Secure & Verified">
+          <div class="card-body">
+            <h5 class="card-title">Secure & Verified</h5>
+            <p class="card-text">Admin approval ensures all submissions are legitimate and spam-free.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="work text-center">
+    <div class="container">
+      <h2 class="mb-5 h2w">How It Works</h2>
+      <div class="row g-4 justify-content-center">
+        <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center">
+          <div class="wcont1 flex-column flex-sm-row align-items-center text-center text-sm-start">
+            <img class="imgw mb-3 mb-sm-0"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6AdrMwoAUBicxFb-zKcC2lyUaQbnOzTBTYA5ztvoL8-XQ5ZqPddRe5ufXXyidYnYGGhI&usqp=CAU"
+              alt="">
+            <div class="textw">
+              <h3>Report Your Item</h3>
+              <p>Whether you've lost or found something, create a detailed report with photos and location.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center">
+          <div class="wcont1 flex-column flex-sm-row align-items-center text-center text-sm-start">
+            <img class="imgw mb-3 mb-sm-0"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR31MsdQ_LCvu2crr7mRbVMXBD6NWViQqFJv93fr_Kx98vRd6dc-j2gAbweUf9wkKrTNyw&usqp=CAU"
+              alt="">
+            <div class="textw">
+              <h3>Track Your Item</h3>
+              <p>Stay updated with real-time status and track your lost or found reports effortlessly.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center">
+          <div class="wcont1 flex-column flex-sm-row align-items-center text-center text-sm-start">
+            <img class="imgw mb-3 mb-sm-0"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6gr2D6gk8j9_SC18AIHWCPxy9090h-Z2cCQ&s" alt="">
+            <div class="textw">
+              <h3>Get Reunited</h3>
+              <p>Once verified, you can safely connect and recover your item through our platform.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rstart text-center">
+    <h2 class="rh2">Ready to Get Started?</h2>
+    <p>Join hundreds of students who have successfully recovered their</p>
+    <p> belongings.</p>
+    <form action="/signup" method="get">
+    <button class="btn btn-info btn1">Create free account</button>
+    </form>
+  </div>
+
+  <!-- Footer -->
+<footer class="text-center text-lg-start bg-body-tertiary text-muted">
+  <!-- Section: Social media -->
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    <!-- Left -->
+    <div class="me-5 d-none d-lg-block">
+      <span>Get connected with us on social networks:</span>
+    </div>
+    <!-- Left -->
+
+    <!-- Right -->
+    <div>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <!-- Right -->
+  </section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>Find it
+          </h6>
+          <p>
+           Reuniting lost items with their owners across college campuses.
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+           Quick Links
+          </h6>
+          <p>
+            <a href="/browser" class="text-reset">Browse Items</a>
+          </p>
+          <p>
+            <a href="/report" class="text-reset">Report Lost</a>
+          </p>
+          <p>
+            <a href="/reportfnd" class="text-reset">Report Found</a>
+          </p>
+         
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+          Support
+
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">How It Works</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">FAQ </a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Contact Admin</a>
+          </p>
+          
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p><i class="fas fa-home me-3"></i> Kolhapur, NY 10012, India</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            info@example.com
+          </p>
+          <p><i class="fas fa-phone me-3"></i> +8080511603</p>
+         
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2021 Copyright:
+    
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+  

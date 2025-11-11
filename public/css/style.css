@@ -1,0 +1,52 @@
+
+
+body {
+  font-family: 'Lucida Sans', Geneva, Verdana, sans-serif !important;
+   display: flex; 
+  flex-direction: column;
+  min-height: 100vh;
+   background-image: url('blf.jpg'); 
+
+}
+
+/* Navbar styling */
+.mnav {
+  background-color: rgb(219, 216, 216);
+}
+
+.navhead {
+  margin-left: 3rem;
+}
+
+.navitems .nav-link {
+  margin: 0 1.2rem;
+}
+
+.n1:hover{
+ color: aqua;
+}
+
+.navend {
+  margin-right: 2rem;
+ 
+}
+
+.navlo {
+  color: white !important;
+}
+
+.sbtn {
+  margin-left: 1rem;
+  color: white !important;
+}
+
+.users{
+padding-top: 0.5rem;
+padding-right:1rem
+}
+
+
+
+
+  
+

@@ -1,0 +1,468 @@
+<%layout("/layouts/boilerplate")%>
+
+    <style>
+        .dashboard {
+       
+            padding-left: 6rem;
+            padding-right: 6rem;
+            padding-top: 6rem;
+        }
+
+        .cards {
+            padding-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card1 {
+            height: 10rem;
+            width: 14rem;
+            background-color: aliceblue;
+            border-radius: 10px;
+
+
+        }
+
+        .spa {
+            padding-left: 2rem;
+            padding-right: 2rem;
+            padding-top: 1.5rem;
+        }
+
+        .nextcont {
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .allshow {
+            padding-top: 3rem;
+        }
+
+        .padd {
+            padding-left: 2rem;
+            padding-right: 2rem;
+            padding-top: 2rem;
+        }
+
+        .tables {
+            
+            width: 100%;
+            background-color: aliceblue;
+            border-radius: 10px;
+
+        }
+
+        .maintable {
+            justify-content: space-evenly;
+        }
+
+        /* ----- Dashboard Layout ----- */
+.dashboard {
+    padding: 6rem 2rem;
+}
+
+/* Responsive spacing for large screens */
+@media (min-width: 992px) {
+    .dashboard {
+        padding-left: 6rem;
+        padding-right: 6rem;
+    }
+}
+
+/* ----- Cards Container ----- */
+.cards {
+    padding-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-between;
+}
+
+/* Each card */
+.card1 {
+    flex: 1 1 calc(25% - 1.5rem);
+    min-width: 220px;
+    background-color: aliceblue;
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+/* Card inside spacing */
+.spa {
+    padding: 1rem;
+}
+
+.nextcont {
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ----- Responsive Font Sizes ----- */
+h1 { font-size: 2rem; }
+h3 { font-size: 1.4rem; }
+p, td, th, button { font-size: 1rem; }
+
+/* Small screens */
+@media (max-width: 576px) {
+    h1 { font-size: 1.5rem; }
+    h3 { font-size: 1.2rem; }
+    p, td, th { font-size: 0.9rem; }
+}
+
+/* Medium screens */
+@media (max-width: 768px) {
+    h1 { font-size: 1.7rem; }
+    h3 { font-size: 1.25rem; }
+}
+
+/* ----- Table Styles ----- */
+.custom-table tbody tr {
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.custom-table td,
+.custom-table th {
+    padding: 16px 10px;
+}
+
+/* Status badges */
+.custom-table .badge {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+}
+
+/* Approve / Reject Buttons */
+.custom-table .btn {
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+/* Make table scrollable on mobile */
+@media (max-width: 576px) {
+    .custom-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+/* ----- Footer ----- */
+footer p, footer a {
+    font-size: 0.9rem;
+}
+
+@media (max-width: 576px) {
+    footer p, footer a {
+        font-size: 0.8rem;
+    }
+}
+
+    </style>
+
+
+    <div class="dashboard">
+        <div class="topcont">
+            <h1>Admin Dashboard</h1>
+            <p>Manage reports, users, and monitor platform activity</p>
+            <div class="cards d-flex">
+                <div class="card1">
+                    <div class="spa">
+                        <h6>Pending reports</h6>
+                        <div class="nextcont ">
+                            <div class="cpend">
+                                <h1><%= pending %></h1>
+                            </div>
+                            <div class="icon">
+                                <h1><i class="fa-solid fa-hourglass-half i1"></i></h1>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="card1">
+                    <div class="spa">
+                        <h6>Total Items</h6>
+                        <div class="nextcont ">
+                            <div class="cpend">
+                                <h1><%= totalItems %></h1>
+                            </div>
+                            <div class="icon">
+                                <h1><i class="fa-solid fa-square"></i></h1>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="card1">
+                    <div class="spa">
+                        <h6>Total Users</h6>
+                        <div class="nextcont ">
+                            <div class="cpend">
+                                <h1><%= totalUsers %></h1>
+                            </div>
+                            <div class="icon">
+                                <h1><i class="fa-solid fa-users"></i></h1>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="card1">
+                    <div class="spa">
+                        <h6>Success Rate</h6>
+                        <div class="nextcont ">
+                            <div class="cpend">
+                                <h1>78%</h1>
+                            </div>
+                            <div class="icon">
+                                <h1><i class="fa-solid fa-circle-check"></i></h1>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="allshow">
+            <div class="appr">
+                <h3>Pending Approval</h3>
+            </div>
+
+           <div class="container mt-4">
+    <h3 class="fw-bold">Pending Submissions</h3>
+    <p class="text-muted mb-4">Review and approve or reject new reports</p>
+
+    <table class="table align-middle custom-table">
+        <thead class="table-light">
+            <tr>
+                <th>Item</th>
+                <th>Category</th>
+                
+                <th>Status</th>
+                <th>Date</th>
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% for(let itm of det){ %>
+            <tr>
+                <td class="fw-semibold"><%= itm.title %></td>
+                <td><%= itm.category %></td>
+          
+
+                <!-- Status Badge -->
+                <td>
+                    <% if(itm.status === "found"){ %>
+                        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">found</span>
+                    <% } else { %>
+                        <span class="badge bg-danger px-3 py-2 rounded-pill">lost</span>
+                    <% } %>
+                </td>
+
+                <td><%= itm.date_reported ? new Date(itm.date_reported).toISOString().split("T")[0] : "N/A" %></td>
+
+                <!-- Action Buttons -->
+                <td class="text-end">
+                    <form action="/approve/<%= itm.id %>" method="post" class="d-inline">
+                        <button class="btn btn-outline-primary btn-sm me-2">
+                            <i class="fa-regular fa-circle-check me-1"></i> Approve
+                        </button>
+                    </form>
+
+                    <form action="/reject/<%= itm.id %>" method="post" class="d-inline">
+                        <button class="btn btn-outline-danger btn-sm">
+                            <i class="fa-regular fa-circle-xmark me-1"></i> Reject
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-body-tertiary text-muted">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <!-- Left -->
+            <div class="me-5 d-none d-lg-block">
+                <span>Get connected with us on social networks:</span>
+            </div>
+            <!-- Left -->
+
+            <!-- Right -->
+            <div>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-gem me-3"></i>Find it
+                        </h6>
+                        <p>
+                            Reuniting lost items with their owners across college campuses.
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Quick Links
+                        </h6>
+                        <p>
+                            <a href="/browser" class="text-reset">Browse Items</a>
+                        </p>
+                        <p>
+                            <a href="/report" class="text-reset">Report Lost</a>
+                        </p>
+                        <p>
+                            <a href="/reportfnd" class="text-reset">Report Found</a>
+                        </p>
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Support
+
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">How It Works</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">FAQ </a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Contact Admin</a>
+                        </p>
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                        <p><i class="fas fa-home me-3"></i> Kolhapur, NY 10012, India</p>
+                        <p>
+                            <i class="fas fa-envelope me-3"></i>
+                            info@example.com
+                        </p>
+                        <p><i class="fas fa-phone me-3"></i> +8080511603</p>
+
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2021 Copyright:
+
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->

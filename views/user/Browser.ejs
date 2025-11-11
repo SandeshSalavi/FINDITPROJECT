@@ -1,0 +1,377 @@
+<%layout("/layouts/boilerplate")%>
+    <style>
+    .items {
+        background-color: #ffffff;
+        padding-left: 100px;
+        padding-right: 100px;
+        padding-top: 4rem;
+    }
+
+    .headit {
+        padding-top: 2rem;
+    }
+
+    .search {
+        width: 500px;
+    }
+
+    .dropdown {
+        padding-left: 50px;
+    }
+
+    .dbtn {
+        width: 500px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 2000px;
+    }
+
+    .sel {
+        width: 500px;
+    }
+
+
+    /* ---------------------------------------------------------
+        🔥 RESPONSIVE UI FIXES
+    ---------------------------------------------------------- */
+
+    /* For tablets (≤ 992px) */
+    @media (max-width: 992px) {
+        .items {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        .sel,
+        .dbtn,
+        .search {
+            width: 100%;
+        }
+
+        .dropdown {
+            padding-left: 20px;
+        }
+
+        .searchcont {
+            flex-direction: column;
+            align-items: flex-start !important;
+            gap: 10px;
+        }
+    }
+
+    /* For mobile (≤ 768px) */
+    @media (max-width: 768px) {
+        .items {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .sel,
+        .dbtn {
+            width: 100% !important;
+        }
+
+        .dropdown {
+            padding-left: 0;
+            width: 100%;
+        }
+
+        .headit h2 {
+            font-size: 1.8rem;
+        }
+
+        .container {
+            padding: 0;
+        }
+
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+    }
+
+    /* For very small mobile screens (≤ 480px) */
+    @media (max-width: 480px) {
+
+        .items {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .headit h2 {
+            font-size: 1.5rem;
+        }
+
+        .sel,
+        .dbtn {
+            width: 100% !important;
+        }
+
+        .searchcont {
+            width: 100%;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .dropdown {
+            width: 100%;
+        }
+
+        .card-body h5 {
+            font-size: 1rem;
+        }
+
+        .card-body p {
+            font-size: 0.9rem;
+        }
+    }
+</style>
+
+
+    <div class="items">
+        <div class="itemscontent">
+
+            <div class="headit">
+                <h2>Browse Items</h2>
+                <p>Search through lost and found items reported by the community</p>
+            </div>
+
+
+            <div class="searchcont d-flex justify-content-start align-items-center mt-3">
+                <form class="d-flex w-auto" action="/browser" method="get">
+                    <select class="form-control me-2 sel" name="status">
+                        <option value="">Select Status</option>
+                        <option value="lost">Lost</option>
+                        <option value="found">Found</option>
+                    </select>
+
+                    <button class="btn btn-outline-info" type="submit">Search</button>
+                </form>
+
+
+                <!-- <div class="dropdown">
+  <button class="btn  dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Books</a></li>
+    <li><a class="dropdown-item" href="#">Electronics</a></li>
+    <li><a class="dropdown-item" href="#">Accessories</a></li>
+         <li><a class="dropdown-item" href="#">ID Card</a></li>
+      <li><a class="dropdown-item" href="#">Keys</a></li>
+       <li><a class="dropdown-item" href="#">Clothings</a></li>
+  </ul>
+</div>
+
+
+
+
+ -->
+                <div class="dropdown">
+                    <button class=" btn btn-light dropdown-toggle dbtn" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Dropdown button
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Books</a></li>
+                        <li><a class="dropdown-item" href="#">Electronics</a></li>
+                        <li><a class="dropdown-item" href="#">Accessories</a></li>
+                        <li><a class="dropdown-item" href="#">ID Card</a></li>
+                        <li><a class="dropdown-item" href="#">Keys</a></li>
+                        <li><a class="dropdown-item" href="#">Clothings</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+
+            <div class="container mt-5">
+                <div class="row">
+
+                    <% for(let itm of data) { %>
+                        <div class="col-12 col-md-4 col-lg-4 mb-4"> <!-- 3 cards per row -->
+
+                            <div class="card h-100">
+                                <img src="<%= itm.image_url %>" class="card-img-top" alt="Item Image">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= itm.title %>
+                                    </h5>
+                                    <p class="card-text">
+                                        <%= itm.description %>
+                                    </p>
+                                    <form action="/browse/<%= itm.item_id %>" method="get">
+                                        <button class="btn btn-primary w-100">View</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                        <% } %>
+
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-body-tertiary text-muted">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <!-- Left -->
+            <div class="me-5 d-none d-lg-block">
+                <span>Get connected with us on social networks:</span>
+            </div>
+            <!-- Left -->
+
+            <!-- Right -->
+            <div>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-gem me-3"></i>Find it
+                        </h6>
+                        <p>
+                            Reuniting lost items with their owners across college campuses.
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Quick Links
+                        </h6>
+                        <p>
+                            <a href="/browser" class="text-reset">Browse Items</a>
+                        </p>
+                        <p>
+                            <a href="/report" class="text-reset">Report Lost</a>
+                        </p>
+                        <p>
+                            <a href="/reportfnd" class="text-reset">Report Found</a>
+                        </p>
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Support
+
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">How It Works</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">FAQ </a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Contact Admin</a>
+                        </p>
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                        <p><i class="fas fa-home me-3"></i> Kolhapur, NY 10012, India</p>
+                        <p>
+                            <i class="fas fa-envelope me-3"></i>
+                            info@example.com
+                        </p>
+                        <p><i class="fas fa-phone me-3"></i> +8080511603</p>
+
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2021 Copyright:
+
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->

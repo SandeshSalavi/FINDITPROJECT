@@ -1,0 +1,258 @@
+<%layout("/layouts/boilerplate")%>
+
+    <style>
+        .repadd {
+            padding-top: 8rem;
+            padding-bottom: 3rem;
+        }
+
+        .card {
+            background-color: rgb(255, 255, 255);
+        }
+
+        .repcont {
+            padding-top: 2rem;
+            padding-left: 3rem;
+            padding-right: 3rem;
+        }
+    </style>
+
+    <form action="/report" method="post">
+
+        <div class="repadd">
+            <div class="d-flex justify-content-center ">
+
+                <div class="card p-4 shadow" style="width: 800px;">
+
+                    <div class="repcont">
+                        <div class="rephead">
+                            <h1>Report Lost Item</h1>
+                            <p>Provide detailed information to help us find your item</p>
+                        </div>
+                        <div class="repfor">
+
+                            <label for="">Item Name</label><br>
+                            <input type="text" class="form-control" id="basic-url" name="title"
+                                aria-describedby="basic-addon3 basic-addon4" placeholder="eg.,Blue BackPack" required>
+                            <br>
+
+                            <label for="">Category</label><br>
+                            <input type="text" class="form-control" id="basic-url" name="category"
+                                aria-describedby="basic-addon3 basic-addon4" placeholder="Category" required>
+                            <br>
+                            <label for="">Description</label><br>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"
+                                placeholder="Describe your item in detail" required></textarea>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Last Seen Location</label>
+                                    <input type="text" class="form-control" placeholder="e.g., library" name="location" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Date Lost</label>
+                                    <input type="date" class="form-control" name="date_reported" required>
+                                </div>
+                            </div>
+                            <br>
+
+                            <label for="">User id</label><br>
+                            <input type="text" class="form-control" id="basic-url" name="user_id"
+                                aria-describedby="basic-addon3 basic-addon4" placeholder="Category" required>
+                            <br>
+                            <label>Status</label>
+                            <select class="form-control" name="status">
+                                <option value="lost">Lost</option>
+                                <option value="found">Found</option>
+                            </select>
+                            <br>
+                            <label for="">Image URL</label><br>
+                            <input type="text" class="form-control" id="basic-url"
+                                aria-describedby="basic-addon3 basic-addon4" placeholder="Image url" name="image_url" required>
+                            <br>
+                            <button class="btn btn-primary w-100">Submit</button>
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-body-tertiary text-muted">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <!-- Left -->
+            <div class="me-5 d-none d-lg-block">
+                <span>Get connected with us on social networks:</span>
+            </div>
+            <!-- Left -->
+
+            <!-- Right -->
+            <div>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-gem me-3"></i>Find it
+                        </h6>
+                        <p>
+                            Reuniting lost items with their owners across college campuses.
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Quick Links
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Browse Items</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Report Lost</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Report Found</a>
+                        </p>
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Support
+
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">How It Works</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">FAQ </a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Contact Admin</a>
+                        </p>
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                        <p><i class="fas fa-home me-3"></i> Kolhapur, NY 10012, India</p>
+                        <p>
+                            <i class="fas fa-envelope me-3"></i>
+                            info@example.com
+                        </p>
+                        <p><i class="fas fa-phone me-3"></i> +8080511603</p>
+
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2021 Copyright:
+
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->

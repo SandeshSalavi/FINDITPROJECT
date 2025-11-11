@@ -1,0 +1,132 @@
+<% layout('/layouts/boilerplate') %>
+
+<style>
+    .containers {
+        padding-top: 5rem;
+        padding-bottom: 2rem;
+        padding-left: 4rem;
+    }
+    .cont1 {
+        justify-items: center;
+    }
+    .continfo {
+        padding-top: 1rem;
+    }
+    .contsimg{
+        height: 14rem;
+        width: 14rem;
+    }
+</style>
+
+<!-- USER PROFILE BOX -->
+<div class="containers profile-box">
+    <div class="row justify-content-start">
+        <div class="col-12 col-md-4 p-4 bg-light border rounded">
+            <div class="cont1 text-center">
+
+                <div class="contimg mb-3">
+                    <img src="\uploads\profile.png" alt="" class="contsimg">
+                </div>
+
+                <div class="continfo">
+                    <h3><%= det.name %></h3>
+                    <p><i class="fa-solid fa-phone"></i> +<%= det.phone %></p>
+                    <p><i class="fa-solid fa-envelope"></i> <%= det.email %></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- USER ITEMS GRID -->
+<div class="container mt-5">
+    <div class="row">
+
+        <% if (data && data.length > 0) { %>
+            <% for (let itm of data) { %>
+                <div class="col-12 col-md-4 col-lg-4 mb-4">
+
+                    <div class="card h-100">
+                        <img src="<%= itm.image_url %>" class="card-img-top" alt="Item Image">
+
+                        <div class="card-body">
+                            <h5 class="card-title"><%= itm.title %></h5>
+                            <p class="card-text"><%= itm.description %></p>
+
+                            <form action="/browse/<%= itm.item_id %>" method="get">
+                                <button class="btn btn-primary w-100">View</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            <% } %>
+
+        <% } else { %>
+            <h3 class="text-center text-muted">No items uploaded yet.</h3>
+        <% } %>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="text-center text-lg-start bg-body-tertiary text-muted">
+
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+        <div class="me-5 d-none d-lg-block">
+            <span>Get connected with us on social networks:</span>
+        </div>
+
+        <div>
+            <a href="" class="me-4 text-reset"><i class="fab fa-facebook-f"></i></a>
+            <a href="" class="me-4 text-reset"><i class="fab fa-twitter"></i></a>
+            <a href="" class="me-4 text-reset"><i class="fab fa-google"></i></a>
+            <a href="" class="me-4 text-reset"><i class="fab fa-instagram"></i></a>
+            <a href="" class="me-4 text-reset"><i class="fab fa-linkedin"></i></a>
+            <a href="" class="me-4 text-reset"><i class="fab fa-github"></i></a>
+        </div>
+    </section>
+
+    <section>
+        <div class="container text-center text-md-start mt-5">
+
+            <div class="row mt-3">
+
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        <i class="fas fa-gem me-3"></i>Find it
+                    </h6>
+                    <p>Reuniting lost items with their owners across college campuses.</p>
+                </div>
+
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">Quick Links</h6>
+                    <p><a href="/browser" class="text-reset">Browse Items</a></p>
+                    <p><a href="/report" class="text-reset">Report Lost</a></p>
+                    <p><a href="/reportfnd" class="text-reset">Report Found</a></p>
+                </div>
+
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">Support</h6>
+                    <p><a href="#!" class="text-reset">How It Works</a></p>
+                    <p><a href="#!" class="text-reset">FAQ</a></p>
+                    <p><a href="#!" class="text-reset">Contact Admin</a></p>
+                </div>
+
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                    <p><i class="fas fa-home me-3"></i> Kolhapur, India</p>
+                    <p><i class="fas fa-envelope me-3"></i> info@example.com</p>
+                    <p><i class="fas fa-phone me-3"></i> +8080511603</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2024 Find It
+    </div>
+
+</footer>
