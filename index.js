@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const engine = require('ejs-mate');
 const expressLayouts = require('express-ejs-layouts');
 const session = require("express-session");
-const MySQLStore = require("express-mysql-session")(session);
+// const MySQLStore = require("express-mysql-session")(session);
 const { isLoggedIn, isAdmin } = require("./middleware");
 
 const app = express();
@@ -32,11 +32,11 @@ db.connect((err) => {
     console.log("Mysql is connected");
 });
 
-const sessionStore = new MySQLStore({}, db);
+// const sessionStore = new MySQLStore({}, db);
 
 app.use(session({
     secret: process.env.SESSION_SECRET || "default_secret_key",
-    store: sessionStore,
+    // store: sessionStore,
     resave: false,
     saveUninitialized: false
 }));
@@ -242,6 +242,7 @@ app.get("/admin/dashboard", (req, res) => {
         });
     });
 });
+
 
 app.listen(process.env.PORT || 8060, () => {
     console.log("port is listening on 8060");

@@ -1,76 +1,103 @@
-<% layout('/layouts/boilerplate') %>
+<% layout("/layouts/boilerplate") %>
+
 <style>
-    .container{
-        padding-top: 5rem;
+    body {
+        background: #f5f7fa;
     }
 
+    .floating-card {
+        margin-top: 6rem;
+        padding: 2rem;
+        border-radius: 15px;
+        background: white;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        transition: 0.3s ease-in-out;
+        transform: translateY(0px);
+    }
+
+    .floating-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+    }
+
+    .container {
+        padding-top: 3rem;
+    }
 </style>
-<div class="container mt-5">
+
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
 
-            <h2 class="text-center mb-4">Create Your Account</h2>
+            <div class="floating-card">
+                <h2 class="text-center mb-4">Create Your Account</h2>
 
-            <form action="/signup" method="post" class="needs-validation" novalidate>
+                <form action="/signup" method="post" class="needs-validation" novalidate>
 
-                <!-- NAME -->
-                <div class="mb-3">
-                    <label for="name" class="form-label">Full Name</label>
-                    <input 
-                        type="text" 
-                        class="form-control" 
-                        id="name" 
-                        name="name" 
-                        placeholder="Enter your full name"
-                        required>
-                    <div class="invalid-feedback">
-                        Please enter your name.
+                    <!-- NAME -->
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="name" 
+                            name="name" 
+                            placeholder="Enter your full name"
+                            required>
+                        <div class="invalid-feedback">
+                            Please enter your name.
+                        </div>
                     </div>
-                </div>
 
-                <!-- EMAIL -->
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input 
-                        type="email" 
-                        class="form-control" 
-                        id="email" 
-                        name="email" 
-                        placeholder="example@gmail.com"
-                        required>
-                    <div class="invalid-feedback">
-                        Please enter a valid email.
+                    <!-- EMAIL -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input 
+                            type="email" 
+                            class="form-control" 
+                            id="email" 
+                            name="email" 
+                            placeholder="example@gmail.com"
+                            required>
+                        <div class="invalid-feedback">
+                            Please enter a valid email.
+                        </div>
                     </div>
-                </div>
 
-                <!-- PHONE -->
-                <div class="mb-3">
-                    <label for="phone" class="form-label">Phone Number</label>
-                    <input 
-                        type="text" 
-                        class="form-control" 
-                        id="phone" 
-                        name="phone" 
-                        placeholder="e.g. 8080511603">
-                </div>
-
-                <!-- PASSWORD -->
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input 
-                        type="password" 
-                        class="form-control" 
-                        id="password" 
-                        name="password" 
-                        placeholder="Enter password"
-                        required>
-                    <div class="invalid-feedback">
-                        Please enter a password.
+                    <!-- PHONE -->
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="phone" 
+                            name="phone" 
+                            placeholder="e.g. 8080511603">
                     </div>
-                </div>
 
-                <button class="btn btn-primary w-100">Sign Up</button>
-            </form>
+                    <!-- PASSWORD -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input 
+                            type="password" 
+                            class="form-control" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Enter password"
+                            required>
+                        <div class="invalid-feedback">
+                            Please enter a password.
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary w-100">Sign Up</button>
+
+                    <div class="text-center mt-3">
+                        <a href="/login">Already have an account? Login</a>
+                    </div>
+
+                </form>
+            </div>
 
         </div>
     </div>

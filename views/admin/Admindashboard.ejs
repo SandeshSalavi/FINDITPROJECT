@@ -2,7 +2,7 @@
 
     <style>
         .dashboard {
-       
+
             padding-left: 6rem;
             padding-right: 6rem;
             padding-top: 6rem;
@@ -48,7 +48,7 @@
         }
 
         .tables {
-            
+
             width: 100%;
             background-color: aliceblue;
             border-radius: 10px;
@@ -60,110 +60,145 @@
         }
 
         /* ----- Dashboard Layout ----- */
-.dashboard {
-    padding: 6rem 2rem;
-}
+        .dashboard {
+            padding: 6rem 2rem;
+        }
 
-/* Responsive spacing for large screens */
-@media (min-width: 992px) {
-    .dashboard {
-        padding-left: 6rem;
-        padding-right: 6rem;
-    }
-}
+        /* Responsive spacing for large screens */
+        @media (min-width: 992px) {
+            .dashboard {
+                padding-left: 6rem;
+                padding-right: 6rem;
+            }
+        }
 
-/* ----- Cards Container ----- */
-.cards {
-    padding-top: 2rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: space-between;
-}
+        /* ----- Cards Container ----- */
+        .cards {
+            padding-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: space-between;
+        }
 
-/* Each card */
-.card1 {
-    flex: 1 1 calc(25% - 1.5rem);
-    min-width: 220px;
-    background-color: aliceblue;
-    border-radius: 12px;
-    padding: 1rem;
-}
+        /* Each card */
+        .card1 {
+            flex: 1 1 calc(25% - 1.5rem);
+            min-width: 220px;
+            background-color: aliceblue;
+            border-radius: 12px;
+            padding: 1rem;
+        }
 
-/* Card inside spacing */
-.spa {
-    padding: 1rem;
-}
+        /* Card inside spacing */
+        .spa {
+            padding: 1rem;
+        }
 
-.nextcont {
-    padding-top: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        .nextcont {
+            padding-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-/* ----- Responsive Font Sizes ----- */
-h1 { font-size: 2rem; }
-h3 { font-size: 1.4rem; }
-p, td, th, button { font-size: 1rem; }
+        /* ----- Responsive Font Sizes ----- */
+        h1 {
+            font-size: 2rem;
+        }
 
-/* Small screens */
-@media (max-width: 576px) {
-    h1 { font-size: 1.5rem; }
-    h3 { font-size: 1.2rem; }
-    p, td, th { font-size: 0.9rem; }
-}
+        h3 {
+            font-size: 1.4rem;
+        }
 
-/* Medium screens */
-@media (max-width: 768px) {
-    h1 { font-size: 1.7rem; }
-    h3 { font-size: 1.25rem; }
-}
+        p,
+        td,
+        th,
+        button {
+            font-size: 1rem;
+        }
 
-/* ----- Table Styles ----- */
-.custom-table tbody tr {
-    border-bottom: 1px solid #e6e6e6;
-}
+        /* Small screens */
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 1.5rem;
+            }
 
-.custom-table td,
-.custom-table th {
-    padding: 16px 10px;
-}
+            h3 {
+                font-size: 1.2rem;
+            }
 
-/* Status badges */
-.custom-table .badge {
-    font-size: 0.85rem;
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-}
+            p,
+            td,
+            th {
+                font-size: 0.9rem;
+            }
+        }
 
-/* Approve / Reject Buttons */
-.custom-table .btn {
-    padding: 6px 14px;
-    border-radius: 10px;
-    font-weight: 500;
-}
+        /* Medium screens */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.7rem;
+            }
 
-/* Make table scrollable on mobile */
-@media (max-width: 576px) {
-    .custom-table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-}
+            h3 {
+                font-size: 1.25rem;
+            }
+        }
 
-/* ----- Footer ----- */
-footer p, footer a {
-    font-size: 0.9rem;
-}
+        /* ----- Table Styles ----- */
+        .custom-table tbody tr {
+            border-bottom: 1px solid #e6e6e6;
+        }
 
-@media (max-width: 576px) {
-    footer p, footer a {
-        font-size: 0.8rem;
-    }
-}
+        .custom-table td,
+        .custom-table th {
+            padding: 16px 10px;
+        }
 
+        /* Status badges */
+        .custom-table .badge {
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+        }
+
+        /* Approve / Reject Buttons */
+        .custom-table .btn {
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        /* Make table scrollable on mobile */
+        @media (max-width: 576px) {
+            .custom-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+
+        /* ----- Footer ----- */
+        footer p,
+        footer a {
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 576px) {
+
+            footer p,
+            footer a {
+                font-size: 0.8rem;
+            }
+        }
+
+        
+        .padacpt{
+            padding-left: 2rem;
+            padding-right: 2rem;
+            padding-top: 2rem;
+        }
     </style>
 
 
@@ -177,7 +212,9 @@ footer p, footer a {
                         <h6>Pending reports</h6>
                         <div class="nextcont ">
                             <div class="cpend">
-                                <h1><%= pending %></h1>
+                                <h1>
+                                    <%= pending %>
+                                </h1>
                             </div>
                             <div class="icon">
                                 <h1><i class="fa-solid fa-hourglass-half i1"></i></h1>
@@ -194,7 +231,9 @@ footer p, footer a {
                         <h6>Total Items</h6>
                         <div class="nextcont ">
                             <div class="cpend">
-                                <h1><%= totalItems %></h1>
+                                <h1>
+                                    <%= totalItems %>
+                                </h1>
                             </div>
                             <div class="icon">
                                 <h1><i class="fa-solid fa-square"></i></h1>
@@ -211,7 +250,9 @@ footer p, footer a {
                         <h6>Total Users</h6>
                         <div class="nextcont ">
                             <div class="cpend">
-                                <h1><%= totalUsers %></h1>
+                                <h1>
+                                    <%= totalUsers %>
+                                </h1>
                             </div>
                             <div class="icon">
                                 <h1><i class="fa-solid fa-users"></i></h1>
@@ -247,63 +288,185 @@ footer p, footer a {
                 <h3>Pending Approval</h3>
             </div>
 
-           <div class="container mt-4">
-    <h3 class="fw-bold">Pending Submissions</h3>
-    <p class="text-muted mb-4">Review and approve or reject new reports</p>
+            <div class="container mt-4">
+                <h3 class="fw-bold">Pending Submissions</h3>
+                <p class="text-muted mb-4">Review and approve or reject new reports</p>
 
-    <table class="table align-middle custom-table">
-        <thead class="table-light">
-            <tr>
-                <th>Item</th>
-                <th>Category</th>
-                
-                <th>Status</th>
-                <th>Date</th>
-                <th class="text-end">Actions</th>
-            </tr>
-        </thead>
+                <table class="table align-middle custom-table">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Item</th>
+                            <th>Category</th>
 
-        <tbody>
-            <% for(let itm of det){ %>
-            <tr>
-                <td class="fw-semibold"><%= itm.title %></td>
-                <td><%= itm.category %></td>
-          
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
 
-                <!-- Status Badge -->
-                <td>
-                    <% if(itm.status === "found"){ %>
-                        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">found</span>
-                    <% } else { %>
-                        <span class="badge bg-danger px-3 py-2 rounded-pill">lost</span>
-                    <% } %>
-                </td>
+                    <tbody>
+                        <% for(let itm of det){ %>
 
-                <td><%= itm.date_reported ? new Date(itm.date_reported).toISOString().split("T")[0] : "N/A" %></td>
+                            <tr>
+                                <td class="fw-semibold">
+                                    <%= itm.title %>
+                                </td>
+                                <td>
+                                    <%= itm.category %>
+                                </td>
 
-                <!-- Action Buttons -->
-                <td class="text-end">
-                    <form action="/approve/<%= itm.id %>" method="post" class="d-inline">
-                        <button class="btn btn-outline-primary btn-sm me-2">
-                            <i class="fa-regular fa-circle-check me-1"></i> Approve
-                        </button>
-                    </form>
 
-                    <form action="/reject/<%= itm.id %>" method="post" class="d-inline">
-                        <button class="btn btn-outline-danger btn-sm">
-                            <i class="fa-regular fa-circle-xmark me-1"></i> Reject
-                        </button>
-                    </form>
-                </td>
-            </tr>
-            <% } %>
-        </tbody>
-    </table>
-</div>
+                                <!-- Status Badge -->
+                                <td>
+                                    <% if(itm.status==="found" ){ %>
+                                        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">found</span>
+                                        <% } else { %>
+                                            <span class="badge bg-danger px-3 py-2 rounded-pill">lost</span>
+                                            <% } %>
+                                </td>
+
+                                <td>
+                                    <%= itm.date_reported ? new Date(itm.date_reported).toISOString().split("T")[0]
+                                        : "N/A" %>
+                                </td>
+
+                                <!-- Action Buttons -->
+                                <td class="text-end">
+                                    <form action="/admin/dashboard" method="get" class="d-inline">
+                                        <button class="btn btn-outline-primary btn-sm me-2">
+                                            <i class="fa-regular fa-circle-check me-1"></i> Approve
+                                        </button>
+                                    </form>
+
+                                    <form action="/admin/dashboard" method="get" class="d-inline">
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            <i class="fa-regular fa-circle-xmark me-1"></i> Reject
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
 
+        <div class="itmaccept">
+            <div class="padacpt">
+                <div class="head">
+                        <h1>Accepted Items</h1>
+                </div>
+                <div class="acpttable">
+                    <table class="table align-middle custom-table">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Item</th>
+                            <th>Category</th>
 
+                            <th>Status</th>
+                            <th>Date</th>
+                           
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                      <% for(let itm of det){ %>
+
+                            <tr>
+                                <td class="fw-semibold">
+                                    <%= itm.title %>
+                                </td>
+                                <td>
+                                    <%= itm.category %>
+                                </td>
+
+
+                                <!-- Status Badge -->
+                                <td>
+                                    <% if(itm.status==="found" ){ %>
+                                        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">found</span>
+                                        <% } else { %>
+                                            <span class="badge bg-danger px-3 py-2 rounded-pill">lost</span>
+                                            <% } %>
+                                </td>
+
+                                <td>
+                                    <%= itm.date_reported ? new Date(itm.date_reported).toISOString().split("T")[0]
+                                        : "N/A" %>
+                                </td>
+
+                               
+                                
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+
+                </div>
+
+            </div>
+
+
+
+
+
+            <div class="itmaccept">
+            <div class="padacpt">
+                <div class="head">
+                        <h1>Rejected Items</h1>
+                </div>
+                <div class="acpttable">
+                    <table class="table align-middle custom-table">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Item</th>
+                            <th>Category</th>
+
+                            <th>Status</th>
+                            <th>Date</th>
+                           
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                   <% for(let itm of det){ %>
+
+                            <tr>
+                                <td class="fw-semibold">
+                                    <%= itm.title %>
+                                </td>
+                                <td>
+                                    <%= itm.category %>
+                                </td>
+
+
+                                <!-- Status Badge -->
+                                <td>
+                                    <% if(itm.status==="found" ){ %>
+                                        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">found</span>
+                                        <% } else { %>
+                                            <span class="badge bg-danger px-3 py-2 rounded-pill">lost</span>
+                                            <% } %>
+                                </td>
+
+                                <td>
+                                    <%= itm.date_reported ? new Date(itm.date_reported).toISOString().split("T")[0]
+                                        : "N/A" %>
+                                </td>
+
+                               
+                                
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+
+                </div>
+
+            </div>
+
+        </div>
 
 
 
