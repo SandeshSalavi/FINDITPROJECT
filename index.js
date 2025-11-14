@@ -65,7 +65,7 @@ app.use((req, res, next) => {
 // ================= ROUTES =================
 
 // Home
-app.get("/", isLoggedIn, (req, res) => {
+app.get("/",  (req, res) => {
     res.render("admin/home.ejs");
 });
 
