@@ -6,12 +6,28 @@ const bodyParser = require("body-parser");
 const engine = require("ejs-mate");
 const expressLayouts = require("express-ejs-layouts");
 const session = require("express-session");
+
+// Imported MySQL connection
 const db = require("./db");
+
+// Middleware
 const { isLoggedIn, isAdmin } = require("./middleware");
 
 const app = express();
 
-// ================= MIDDLEWARES =================
+/* ================================
+   Debug – Check Railway ENV working
+================================== */
+console.log("ENV CHECK:", {
+    MYSQLHOST: process.env.MYSQLHOST,
+    MYSQLUSER: process.env.MYSQLUSER,
+    MYSQLDATABASE: process.env.MYSQLDATABASE,
+    MYSQLPORT: process.env.MYSQLPORT
+});
+
+/* ================================
+   EXPRESS MIDDLEWARES
+================================== */
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -22,31 +38,38 @@ app.set("views", "./views");
 app.use(expressLayouts);
 app.set("layout", "./layouts/boilerplate");
 
-// Express-session
+/* ================================
+   SESSION
+================================== */
 app.use(
     session({
-        secret: process.env.SESSION_SECRET || "default_secret",
+        secret: process.env.SESSION_SECRET || "default_secret_key",
         resave: false,
-        saveUninitialized: false
+        saveUninitialized: false,
     })
 );
 
-// Global user access
+// Global user object
 app.use((req, res, next) => {
-    res.locals.currentUser = req.session.user;
+    res.locals.currentUser = req.session.user || req.session.admin;
     next();
 });
 
-// ================= ROUTES =================
+/* ================================
+   ROUTES
+================================== */
 
-// Home
+// Home (Dashboard for normal user)
 app.get("/", isLoggedIn, (req, res) => {
-    res.render("admin/home");
+    res.render("admin/home.ejs");
 });
 
-// Browser (Lost / Found Filter)
+/* -------------------------------
+   Lost/Found Browser
+-------------------------------- */
 app.get("/browser", isLoggedIn, (req, res) => {
     const { status } = req.query;
+
     let sql = "SELECT * FROM items";
     let params = [];
 
@@ -57,86 +80,125 @@ app.get("/browser", isLoggedIn, (req, res) => {
 
     db.query(sql, params, (err, rows) => {
         if (err) throw err;
-        res.render("user/Browser", { data: rows });
+        res.render("user/Browser.ejs", { data: rows });
     });
 });
 
-// Detail page
-app.get("/browse/:id", isLoggedIn, (req, res) => {
-    db.query("SELECT * FROM items WHERE item_id = ?", [req.params.id], (err, rows) => {
-        res.render("user/detail", { det: rows[0] });
-    });
+/* -------------------------------
+   Item Detail
+-------------------------------- */
+app.get("/browse/:item_id", isLoggedIn, (req, res) => {
+    const item_id = req.params.item_id;
+
+    db.query(
+        "SELECT * FROM items WHERE item_id = ?",
+        [item_id],
+        (err, rows) => {
+            if (err) throw err;
+            res.render("user/detail.ejs", { det: rows[0] });
+        }
+    );
 });
 
-// Report Lost
+/* -------------------------------
+   LOST REPORT
+-------------------------------- */
 app.get("/report", isLoggedIn, (req, res) => {
-    res.render("user/report");
+    res.render("user/report.ejs");
 });
 
-app.post("/report", isLoggedIn, (req, res) => {
-    const { title, description, category, status, date_reported, image_url, location } = req.body;
+app.post("/report", (req, res) => {
+    const { title, description, category, status, date_reported, image_url, location, user_id } = req.body;
 
     const sql = `
-        INSERT INTO items 
-        (title, description, category, status, date_reported, image_url, location, user_id)
+        INSERT INTO items (title, description, category, status, date_reported, image_url, location, user_id)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
-    db.query(sql, [title, description, category, status, date_reported, image_url, location, req.session.user.user_id], () => {
-        res.redirect("/browser");
-    });
+    db.query(
+        sql,
+        [title, description, category, status, date_reported, image_url, location, user_id],
+        (err) => {
+            if (err) throw err;
+            res.redirect("/browser");
+        }
+    );
 });
 
-// Report Found
+/* -------------------------------
+   FOUND REPORT
+-------------------------------- */
 app.get("/reportfnd", isLoggedIn, (req, res) => {
-    res.render("user/reportfount");
+    res.render("user/reportfount.ejs");
 });
 
 app.post("/reportfnd", isLoggedIn, (req, res) => {
     const { title, description, category, status, date_reported, image_url, location, found_id } = req.body;
 
-    const insert = `
-        INSERT INTO itemsfound 
-        (title, description, category, status, date_reported, image_url, location, found_by)
+    const insertSql = `
+        INSERT INTO itemsfound (title, description, category, status, date_reported, image_url, location, found_id)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
-    db.query(insert, [title, description, category, status, date_reported, image_url, location, found_id], () => {
-        db.query("UPDATE items SET status='found' WHERE item_id = ?", [found_id], () => {
+    db.query(insertSql, [title, description, category, status, date_reported, image_url, location, found_id], (err) => {
+        if (err) throw err;
+
+        const updateSql = "UPDATE items SET status='found' WHERE item_id=?";
+        db.query(updateSql, [found_id], () => {
             res.redirect("/browser");
         });
     });
 });
 
-// Login
+/* -------------------------------
+   USER LOGIN
+-------------------------------- */
 app.get("/login", (req, res) => {
-    res.render("user/login");
+    res.render("user/login.ejs");
 });
 
 app.post("/login", (req, res) => {
     const { email, password } = req.body;
 
-    db.query("SELECT * FROM users WHERE email = ? AND password = ?", [email, password], (err, result) => {
-        if (result.length > 0) {
-            req.session.user = result[0];
-            res.redirect("/");
-        } else res.send("Invalid login");
-    });
+    db.query(
+        "SELECT * FROM users WHERE email = ? AND password = ?",
+        [email, password],
+        (err, results) => {
+            if (err) throw err;
+
+            if (results && results.length > 0) {
+                req.session.user = results[0];
+                return res.redirect("/");
+            }
+
+            res.send("Invalid login details");
+        }
+    );
 });
 
-// Signup
+/* -------------------------------
+   USER SIGNUP
+-------------------------------- */
 app.get("/signup", (req, res) => {
-    res.render("user/signup");
+    res.render("user/signup.ejs");
 });
 
 app.post("/signup", (req, res) => {
     const { name, email, phone, password } = req.body;
 
-    db.query("INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)",
-        [name, email, phone, password], () => res.redirect("/login"));
+    db.query(
+        "INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)",
+        [name, email, phone, password],
+        (err) => {
+            if (err) throw err;
+            res.redirect("/login");
+        }
+    );
 });
 
-// Logout
+/* -------------------------------
+   USER LOGOUT
+-------------------------------- */
 app.get("/logout", (req, res) => {
     req.session.destroy(() => {
         res.clearCookie("connect.sid");
@@ -144,22 +206,79 @@ app.get("/logout", (req, res) => {
     });
 });
 
-// Admin Dashboard
+/* -------------------------------
+   USER PROFILE
+-------------------------------- */
+app.get("/profile/:user_id", isLoggedIn, (req, res) => {
+    const user_id = req.params.user_id;
+
+    const sqlUser = "SELECT * FROM users WHERE user_id = ?";
+    const sqlItems = "SELECT * FROM items WHERE user_id = ?";
+    const sqlFound = "SELECT * FROM itemsfound WHERE found_id = ?";
+
+    db.query(sqlUser, [user_id], (err, userRows) => {
+        db.query(sqlItems, [user_id], (err, lostItems) => {
+            db.query(sqlFound, [user_id], (err, foundItems) => {
+                res.render("user/profile.ejs", {
+                    det: userRows[0],
+                    data: [...lostItems, ...foundItems]
+                });
+            });
+        });
+    });
+});
+
+/* ================================
+   ADMIN ROUTES
+================================== */
+app.get("/login/admin", (req, res) => {
+    res.render("admin/loginadmin.ejs");
+});
+
+app.post("/login/admin", (req, res) => {
+    const { email, password } = req.body;
+
+    db.query(
+        "SELECT * FROM admins WHERE email = ? AND password = ?",
+        [email, password],
+        (err, results) => {
+            if (err) throw err;
+
+            if (results.length > 0) {
+                req.session.admin = results[0];
+                return res.redirect("/admin/dashboard");
+            }
+
+            res.send("Invalid admin details");
+        }
+    );
+});
+
+app.get("/logout/admin", (req, res) => {
+    req.session.destroy(() => {
+        res.clearCookie("connect.sid");
+        res.redirect("/login/admin");
+    });
+});
+
+/* -------------------------------
+   ADMIN DASHBOARD
+-------------------------------- */
 app.get("/admin/dashboard", isAdmin, (req, res) => {
     const sql1 = "SELECT * FROM itemsfound";
-    const sql2 = "SELECT COUNT(*) AS pending FROM claims WHERE claim_status='pending'";
+    const sql2 = "SELECT COUNT(*) AS total_pending_reports FROM claims WHERE claim_status = 'pending'";
     const sql3 = "SELECT COUNT(*) AS total_items FROM itemsfound";
     const sql4 = "SELECT COUNT(*) AS total_users FROM users";
 
-    db.query(sql1, (err, items) => {
-        db.query(sql2, (err, pend) => {
-            db.query(sql3, (err, itemsCount) => {
-                db.query(sql4, (err, userCount) => {
-                    res.render("admin/Admindashboard", {
-                        det: items,
-                        pending: pend[0].pending,
-                        totalItems: itemsCount[0].total_items,
-                        totalUsers: userCount[0].total_users
+    db.query(sql1, (err, itemsFound) => {
+        db.query(sql2, (err, pending) => {
+            db.query(sql3, (err, totalItems) => {
+                db.query(sql4, (err, totalUsers) => {
+                    res.render("admin/Admindashboard.ejs", {
+                        det: itemsFound,
+                        pending: pending[0].total_pending_reports,
+                        totalItems: totalItems[0].total_items,
+                        totalUsers: totalUsers[0].total_users
                     });
                 });
             });
@@ -167,7 +286,10 @@ app.get("/admin/dashboard", isAdmin, (req, res) => {
     });
 });
 
-// ================= START SERVER =================
-app.listen(process.env.PORT || 3000, () => {
-    console.log(`✔ Server running on port ${process.env.PORT || 3000}`);
+/* ================================
+   START SERVER
+================================== */
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`✔ Server running on port ${PORT}`);
 });
