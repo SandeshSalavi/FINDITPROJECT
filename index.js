@@ -43,10 +43,18 @@ app.set("layout", "./layouts/boilerplate");
    SESSION
 ===================================== */
 
+// Create MySQL session store
+const sessionStore = new MySQLStore({
+    host: process.env.MYSQLHOST,
+    port: process.env.MYSQLPORT || 3306,
+    user: process.env.MYSQLUSER,
+    password: process.env.MYSQLPASSWORD, // make sure you have MYSQLPASSWORD in .env
+    database: process.env.MYSQLDATABASE,
+});
 
 app.use(
     session({
-        key: 'session_cookie_name',
+        key: "session_cookie_name",
         secret: process.env.SESSION_SECRET || "default_secret_key",
         store: sessionStore,
         resave: false,
