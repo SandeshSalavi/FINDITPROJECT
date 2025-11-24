@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const engine = require("ejs-mate");
 const expressLayouts = require("express-ejs-layouts");
 const session = require("express-session");
+const MySQLStore = require("express-mysql-session")(session);
 
 // ✅ Import Correct DB File
 const db = require("./db");
@@ -41,11 +42,16 @@ app.set("layout", "./layouts/boilerplate");
 /* =====================================
    SESSION
 ===================================== */
+
+
 app.use(
     session({
+        key: 'session_cookie_name',
         secret: process.env.SESSION_SECRET || "default_secret_key",
+        store: sessionStore,
         resave: false,
         saveUninitialized: false,
+        cookie: { maxAge: 1000 * 60 * 60 } // 1 hour
     })
 );
 
