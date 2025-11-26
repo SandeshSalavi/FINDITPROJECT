@@ -55,7 +55,7 @@ const sessionStore = new MySQLStore({
 app.use(
     session({
         key: "session_cookie_name",
-        secret: process.env.SESSION_SECRET || "default_secret_key",
+        secret: process.env.SESSION_SECRET || "lostfoundsecret",
         store: sessionStore,
         resave: false,
         saveUninitialized: false,
@@ -271,7 +271,11 @@ app.get("/admin/dashboard", isAdmin, (req, res) => {
 /* =====================================
    START SERVER
 ===================================== */
+
+
 const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
-    console.log(`✔ Server running on port ${PORT}`);
+  console.log(`✔ Server running on port ${PORT}`);
 });
+
